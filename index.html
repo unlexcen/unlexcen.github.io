@@ -1,18 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Log-in</title>
-</head>
-<body>
+-- index.html --
 
-<h1 textalight="center">Log-in </h1>
-<p>test web-site.</p>
-  <form>
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+
+    <div>
+        <h2>Let AJAX Insert text</h2>
+        id:
+        <input type="text" name="" id="txtid">
+        fname:
+        <input type="text" name="" id="txtfname">
+        lname:
+        <input type="text" name="" id="txtlname">
+        <button type="button" onclick="php_insert()">insert</button>
+    </div>
+
+
+    <div>
+        <h2>Let AJAX Update text</h2>
+        id:
+        <input type="text" name="" id="txtid1">
+        fname:
+        <input type="text" name="" id="txtfname1">
+        lname:
+        <input type="text" name="" id="txtlname1">
+        <button type="button" onclick="php_update()">update</button>
+    </div>
+
+    <div>
+        <h2>Let AJAX Delete text</h2>
+        id:
+        <input type="text" name="" id="txtid2">
+        <button type="button" onclick="php_delete()">delete</button>
+    </div>
 
 </body>
+
+<script>
+    function loadDoc() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            document.getElementById("demo").innerHTML = this.responseText;
+        }
+        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.send();
+    }
+
+    function php_insert() {
+        const xmlhttp = new XMLHttpRequest();
+        var id = document.getElementById("txtid").value;
+        var fname = document.getElementById("txtfname").value;
+        var lname = document.getElementById("txtlname").value;
+        xmlhttp.open("GET", "php/insert.php?id=" + id + "&fname=" + fname + "&lname=" + lname);
+        xmlhttp.send();
+    }
+   
+    function php_update() {
+        const xmlhttp = new XMLHttpRequest();
+        var id = document.getElementById("txtid1").value;
+        var fname = document.getElementById("txtfname1").value;
+        var lname = document.getElementById("txtlname1").value;
+        xmlhttp.open("GET", "php/update.php?id=" + id + "&fname=" + fname + "&lname=" + lname);
+        xmlhttp.send();
+    }
+
+    function php_delete() {
+        const xmlhttp = new XMLHttpRequest();
+        var id = document.getElementById("txtid2").value;
+        xmlhttp.open("GET", "php/delete.php?id=" + id);
+        xmlhttp.send();
+    }
+</script>
+
 </html>
