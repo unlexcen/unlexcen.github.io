@@ -1,86 +1,61 @@
--- index.html --
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
-
 <body>
-    <div id="demo">
-        <h2>Let AJAX change this text</h2>
-        <button type="button" onclick="loadDoc()">Change Content</button>
-    </div>
 
-    <div>
-        <h2>Let AJAX Insert text</h2>
-        id:
-        <input type="text" name="" id="txtid">
-        fname:
-        <input type="text" name="" id="txtfname">
-        lname:
-        <input type="text" name="" id="txtlname">
-        <button type="button" onclick="php_insert()">insert</button>
-    </div>
-
-
-    <div>
-        <h2>Let AJAX Update text</h2>
-        id:
-        <input type="text" name="" id="txtid1">
-        fname:
-        <input type="text" name="" id="txtfname1">
-        lname:
-        <input type="text" name="" id="txtlname1">
-        <button type="button" onclick="php_update()">update</button>
-    </div>
-
-    <div>
-        <h2>Let AJAX Delete text</h2>
-        id:
-        <input type="text" name="" id="txtid2">
-        <button type="button" onclick="php_delete()">delete</button>
-    </div>
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
 
 </body>
-
-<script>
-    function loadDoc() {
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-        xhttp.open("GET", "ajax_info.txt", true);
-        xhttp.send();
-    }
-
-    function php_insert() {
-        const xmlhttp = new XMLHttpRequest();
-        var id = document.getElementById("txtid").value;
-        var fname = document.getElementById("txtfname").value;
-        var lname = document.getElementById("txtlname").value;
-        xmlhttp.open("GET", "php/insert.php?id=" + id + "&fname=" + fname + "&lname=" + lname);
-        xmlhttp.send();
-    }
-   
-    function php_update() {
-        const xmlhttp = new XMLHttpRequest();
-        var id = document.getElementById("txtid1").value;
-        var fname = document.getElementById("txtfname1").value;
-        var lname = document.getElementById("txtlname1").value;
-        xmlhttp.open("GET", "php/update.php?id=" + id + "&fname=" + fname + "&lname=" + lname);
-        xmlhttp.send();
-    }
-
-    function php_delete() {
-        const xmlhttp = new XMLHttpRequest();
-        var id = document.getElementById("txtid2").value;
-        xmlhttp.open("GET", "php/delete.php?id=" + id);
-        xmlhttp.send();
-    }
-</script>
-
 </html>
